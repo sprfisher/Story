@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Sloth Saga - Extended Edition</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .choice {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        .choice:hover {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Dragon Sloth Saga</h1>
+    <div class="input-section">
+        <h2>Create Your Characters</h2>
+
+        <!-- Character Inputs -->
+        <label for="char1Name">Dragon 1 (Hero):</label>
+        <input type="text" id="char1Name" placeholder="Name"><br>
+        <label for="char1Gender">Gender:</label>
+        <select id="char1Gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="char2Name">Dragon 2 (Hero):</label>
+        <input type="text" id="char2Name" placeholder="Name"><br>
+        <label for="char2Gender">Gender:</label>
+        <select id="char2Gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="char3Name">Dragon 3 (Comic Relief):</label>
+        <input type="text" id="char3Name" placeholder="Name"><br>
+        <label for="char3Gender">Gender:</label>
+        <select id="char3Gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="char4Name">Dragon 4 (Intellectual):</label>
+        <input type="text" id="char4Name" placeholder="Name"><br>
+        <label for="char4Gender">Gender:</label>
+        <select id="char4Gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="char5Name">Dragon 5 (Antagonist):</label>
+        <input type="text" id="char5Name" placeholder="Name"><br>
+        <label for="char5Gender">Gender:</label>
+        <select id="char5Gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="char6Name">Dragon 6 (Mysterious Villain):</label>
+        <input type="text" id="char6Name" placeholder="Name"><br>
+        <label for="char6Gender">Gender:</label>
+        <select id="char6Gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <!-- Ending Choice -->
+        <h3>Choose the Ending</h3>
+        <label for="endingChoice">Ending:</label>
+        <select id="endingChoice">
+            <option value="happy">Happy Ending</option>
+            <option value="tragic">Not a Happy Ending</option>
+        </select><br><br>
+
+        <button id="startStory">Start Story</button>
+    </div>
+
+    <div class="story-section hidden" id="storySection">
+        <h2>The Story</h2>
+        <div id="storyContent">
+            <!-- Story content dynamically added -->
+        </div>
+        <button id="restart">Start Over</button>
+    </div>
+
+    <script>
+        const startStoryBtn = document.getElementById('startStory');
+        const storySection = document.getElementById('storySection');
+        const storyContent = document.getElementById('storyContent');
+        const restartBtn = document.getElementById('restart');
+
+        startStoryBtn.addEventListener('click', () => {
+            // Character Setup
+            const characters = [
+                { name: document.getElementById('char1Name').value || "Blaze", gender: document.getElementById('char1Gender').value },
+                { name: document.getElementById('char2Name').value || "Sparks", gender: document.getElementById('char2Gender').value },
+                { name: document.getElementById('char3Name').value || "Fizzle", gender: document.getElementById('char3Gender').value },
+                { name: document.getElementById('char4Name').value || "Quill", gender: document.getElementById('char4Gender').value },
+                { name: document.getElementById('char5Name').value || "Ember", gender: document.getElementById('char5Gender').value },
+                { name: document.getElementById('char6Name').value || "Shadowclaw", gender: document.getElementById('char6Gender').value }
+            ];
+
+            const endingChoice = document.getElementById('endingChoice').value;
+
+            // Helper for pronouns
+            const getPronoun = (gender, type) => {
+                const pronouns = {
+                    male: { he: "he", him: "him", his: "his" },
+                    female: { he: "she", him: "her", his: "her" }
+                };
+                return pronouns[gender][type];
+            };
+
+            const buildParagraph = (content) => `<p>${content}</p>`;
+
+            // Extended Story Building
+            let storyHTML = buildParagraph(`The dragons had spent centuries collecting treasures, but none as peculiar as the sloth figurine. Made of a strange, metallic resin, it held an air of mystery. Who had created it? And why did it bear the baffling inscription "Made in China"?`);
+            storyHTML += buildParagraph(`${characters[0].name}, the leader, was a wise and bold dragon. However, ${getPronoun(characters[0].gender, 'his')} bravery often teetered on recklessness.`);
+            storyHTML += buildParagraph(`"We must decide who keeps it," ${characters[0].name} declared, the figurine clutched tightly.`);
+            storyHTML += buildParagraph(`${characters[2].name}, known for ${getPronoun(characters[2].gender, 'his')} humor, quipped, "Why not give it to me? I'll trade you a peanut butter sandwich. It's slightly toasted and only mildly radioactive."`);
+            storyHTML += buildParagraph(`Peanut butter turned out to be a bad idea. ${characters[1].name}, who had a severe allergy, sneezed so hard the figurine fell into the drainage pipe of the cave.`);
+            storyHTML += buildParagraph(`"Great. Now we have a plumbing problem," sighed ${characters[3].name}, the intellectual who always carried a toolbox "just in case."`);
+            storyHTML += buildParagraph(`${characters[5].name}, watching from the shadows, grinned. "Soon, they will tear themselves apart," ${getPronoun(characters[5].gender, 'he')} muttered.`);
+
+            // Add more rising action and resolution based on `endingChoice`...
+
+            if (endingChoice === "happy") {
+                storyHTML += buildParagraph(`After much chaos, the dragons realized the figurine was insignificant compared to their friendship.`);
+            } else {
+                storyHTML += buildParagraph(`The figurine's radioactive properties caused catastrophic transformations, ending the dragons' reign.`);
+            }
+
+            storyContent.innerHTML = storyHTML;
+            storySection.classList.remove('hidden');
+        });
+
+        restartBtn.addEventListener('click', () => {
+            storySection.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
